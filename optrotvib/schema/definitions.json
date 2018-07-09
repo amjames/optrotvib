@@ -1,0 +1,121 @@
+{
+    "citation": {
+        "properties": {
+            "doi": {
+                "type": "string"
+            },
+            "bibcode": {
+                "type": "string"
+            }
+        },
+        "required": [
+            "doi"
+        ]
+    },
+    "source_comment": {
+        "info": {
+            "type": "string"
+        }
+    },
+    "wiberg_disp": {
+        "properties": {
+            "temperature": {
+                "type": "number"
+            },
+            "d_x": {
+                "type": "array",
+                "items": "number",
+                "description": "The scale applied to each mode [a0]"
+            }
+        }
+    },
+    "mort_disp": {
+        "properties": {
+            "delta_fraction": {
+                "type": "number",
+                "default": 0.04,
+                "description": "the fraction to apply when calculating delta [a0]"
+            },
+            "d_x": {
+                "type": "array",
+                "items": {
+                    "type": "number"
+                },
+                "description": "The scale applied to each mode (all should be the same) [a0]"
+            }
+        }
+    },
+    "rotation_data": {
+        "properties": {
+            "dtype": {
+                "enum": [
+                    "rotation"
+                ]
+            },
+            "wavelength": {
+                "type": "number",
+                "description": "The wavelength in nm"
+            },
+            "gauge": {
+                "enum": [
+                    "VG",
+                    "LG",
+                    "MVG"
+                ]
+            },
+            "value": {
+                "type": "number"
+            }
+        }
+    },
+    "energy_data": {
+        "properties": {
+            "dtype": {
+                "enum": [
+                    "energy"
+                ]
+            },
+            "name": {
+                "type": "string"
+            },
+            "value": {
+                "type": "number"
+            }
+        }
+    },
+    "array_data": {
+        "properties": {
+            "shape": {
+                "type": "array",
+                "items": {
+                    "type": "integer"
+                }
+            },
+            "data": {
+                "type": "array",
+                "items": {
+                    "type": "number"
+                }
+            }
+        }
+    },
+    "compute_info": {
+        "properties": {
+            "cluster_name": {
+                "type": "string"
+            },
+            "hostname": {
+                "type": "string"
+            },
+            "ncpu": {
+                "type": "integer"
+            },
+            "mem": {
+                "type": "number"
+            },
+            "walltime": {
+                "type": "number"
+            }
+        }
+    }
+}

@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "hash_fields": [
+      "eq_molecule_id",
+      "method",
+      "basis",
+      "program"
+  ],
+  "required": [
+    "eq_molecule_id",
+    "method",
+    "basis",
+    "program"
+  ],
+  "index": ["eq_molecule_id", "method", "basis", "program"],
+  "properties": {
+      "eq_molecule_id": {
+          "type": "string",
+          "description": "The hash of the molecule object provided as input to this calculation"
+      },
+      "method": {
+        "type": "string"
+      },
+      "basis": {
+        "type": "string"
+      },
+      "program": {
+        "type": "string"
+      },
+      "modes": {
+        "type": "array",
+        "items":{
+          "type": "object",
+          "properties": {
+            "x": {
+              "$ref": "#/definitions/array_data",
+              "description": "The displacement vector"
+            },
+            "omega": {
+              "type": "number",
+              "description": "The vibrational frequency of this mode"
+            },
+            "mu": {
+              "type": "number",
+              "description": "The reduced mass of this mode"
+            }
+          }
+        }
+      }
+  },
+  "additionalProperties": false
+}

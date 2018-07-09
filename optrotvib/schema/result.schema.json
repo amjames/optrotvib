@@ -1,0 +1,81 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "hash_fields": [
+      "molecule_id",
+      "method",
+      "basis",
+      "driver",
+      "program"
+  ],
+  "required": [
+    "molecule_id",
+    "method",
+    "basis",
+    "driver",
+    "program",
+    "state"
+  ],
+  "index": ["molecule_id", "method", "basis", "program", "driver"],
+  "properties": {
+      "molecule_id": {
+          "type": "string",
+          "description": "The hash of the molecule object provided as input to this calculation"
+      },
+      "compute_info": {
+          "type": "object",
+          "$ref": "#/definitions/compute_info"
+      },
+      "method": {
+        "type": "str"
+      },
+      "program":{
+        "enum": ["psi4", "gaussain"]
+      },
+      "driver": {
+        "type": "array",
+        "items": [
+          {
+            "type": "string",
+            "enum": ["gradient", "rotation", "hessian"]
+          }
+        ],
+        "additionalItems": { "type": "integer", "minimum": 0 }
+      },
+      "state": {"enum": ["waiting", "running", "complete", "queued", "error"]},
+      "output": {
+        "type": "object",
+        "properties":{
+          "rotations": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties":{
+                "wavelength": {"type": "number"},
+                "gauge": {"enum": ["VG", "LG", "MVG", "GIAO"]},
+                "value": {"type": "number"}
+              }
+            }
+          },
+          "gradient": {
+            "type": "object",
+            "$ref": "#/definitions/array_data"
+          },
+          "hessian":{
+            "type": "object",
+            "$ref": "#/definitions/array_data"
+          }
+        }
+      },
+      "raw_output": {
+        "type": "object",
+        "patternProperties": {
+          "^.*$": {
+            "type": "string",
+            "description": "keys are filenames, values are the contents of the file"
+          }
+        },
+        "additionalProperties": false
+      },
+      "success": {"type": "boolean"}
+  }
+}
