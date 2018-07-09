@@ -37,10 +37,9 @@ def main():
     input_json, output_json = prepare()
     r_id = input_json.get('_id')
     if input_json['modelchem']['program'] == 'psi4':
-        output_json = wrap_compute_info(psi4_engine.run, input_json)
+        output_json = psi4_engine.run(input_json)
     if input_json['modelchem']['program'] == 'g09':
-        output_json = wrap_compute_info(g09_engine.run, input_json)
+        output_json = g09_engine.run(input_json)
     else:
         output_json['raw_output']['error_message'] = "BAD PROG {}".format(input_json['modelchem']['program'])
-    output_json['_id'] = r_id
     Path('output.json').write_text(json.dumps(output_json))

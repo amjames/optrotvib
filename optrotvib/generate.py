@@ -1,3 +1,6 @@
+
+
+
 def _make_job_json(molecule, job_spec, name):
     job_json = {}
     job_json['name'] = name
@@ -6,7 +9,7 @@ def _make_job_json(molecule, job_spec, name):
     return job_json
 
 
-def create_jobs_for_stencil(stencil, job_spec, name):
+def generate_jobs_for_stencil(stencil, job_spec, name):
     """make a directory for a job set, and create job jsons for each mode"""
 
     job_set_dir = Path() / name
